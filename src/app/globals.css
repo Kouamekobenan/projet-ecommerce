@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+.header {
+  background-image: url("./image/img_background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.image {
+  animation: myAnim 5s infinite linear;
+}
+@keyframes myAnim {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.image:hover {
+  animation: none;
+}
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
