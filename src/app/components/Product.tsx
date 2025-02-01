@@ -6,6 +6,9 @@ import { Eye, Heart, Plus, Star } from "lucide-react";
 import Link from "next/link";
 import { Data } from "../data/data";
 import { useCart } from "@/context/CartContext";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+
 
 interface Product {
   id: number;
@@ -19,6 +22,7 @@ const Product = () => {
   const productList = data;
   const [visibleCount, setVisibleCount] = useState(5);
   const [hoveredProductId, setHoveredProductId] = useState<number | null>(null);
+
 
   const [activeIcons, setActiveIcons] = useState({});
 
@@ -34,20 +38,48 @@ const Product = () => {
   };
 
   const { addItemToCart, addFavorite } = useCart();
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.5, // Délai entre chaque enfant
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  };
   return (
     <div id="products" className="p-3 md:p-6">
-      <div className="flex flex-col sm:flex-col gap-3 md:flex-row justify-between items-center">
+      <motion.div className="flex flex-col sm:flex-col gap-3 md:flex-row justify-between items-center"
+       ref={ref}
+      initial={{ opacity: 0, y: 50 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.5 }}>
         <span className="font-serif font-bold text-xl">Featured products</span>
         {visibleCount < productList.length && (
           <span onClick={handleShowAll}>
             <Buttons label="View all products" />
           </span>
         )}
-      </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 p-1 md:p-4 ">
+      </motion.div>
+      <motion.div 
+       ref={ref}
+       variants={containerVariants}
+       initial="hidden"
+       animate={inView ? "visible" : "hidden"}
+      className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 p-1 md:p-4 ">
         {productList.slice(0, visibleCount).map((product) => (
-          <div key={product.id} className="shadow-md">
+        <motion.div variants={itemVariants}
+        
+        transition={{ duration: 0.5 }}
+         key={product.id} className="shadow-md"
+          >
             <div className="relative bg-blue-100 rounded-t-md p-2">
               <span className="flex justify-end relative">
                 <button
@@ -56,7 +88,7 @@ const Product = () => {
                 >
                   <Heart
                     className="cursor-pointer transition-transform duration-200 ease-in-out hover:scale-110
-                     flex bg-white rounded-full p-1 hover:bg-blue-200 "
+                     flex bg-white rounded-full p-1  "
                     onMouseEnter={() => setHoveredProductId(product.id)}
                     onMouseLeave={() => setHoveredProductId(null)}
                     size={48}
@@ -132,14 +164,15 @@ const Product = () => {
               </aside>
 
               <Link href={`../categrory/${product.category}`}>
-                <aside className="bg-slate-100 text-center w-1/2 rounded-sm hover:bg-slate-200 p-1">
-                  {product.category}
+                <aside className="bg-blue-900 text-center w-1/2 rounded-sm hover:bg-blue-800 p-1 text-white">
+                {/* {product.category} */} 
+                Voir +
                 </aside>
               </Link>
             </div>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 };

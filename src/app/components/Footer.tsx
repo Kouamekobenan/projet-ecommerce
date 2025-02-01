@@ -66,7 +66,7 @@ const Footer = () => {
           </section>
         </div>
       </div>
-      <div className="border-t text-center flex gap-2 justify-center italic">
+      <div className="border-t-2 text-center flex gap-2 justify-center italic">
         <span>Nelson12</span>
         <span>email:kouamenelson47@gmail.com</span>
       </div>

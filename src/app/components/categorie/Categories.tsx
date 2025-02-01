@@ -10,8 +10,11 @@ interface productItem {
 }
 
 const Categories: React.FC<productItem> = ({ imgs, desc, price, category }) => {
+  
   return (
     <div className="category border bg-slate-50 rounded-lg hover:shadow-lg hover:duration-500">
+      <div className="">
+      </div>
       <div className="">
         <div className="flex justify-center items-center text-center ">
           <Image src={imgs} width={300} height={200} alt="" />

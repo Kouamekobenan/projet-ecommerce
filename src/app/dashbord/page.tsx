@@ -1,9 +1,10 @@
 import React from "react";
 import Navigations from "../components/dashbord_comp/Navigations";
+import { Barchat } from "../components/Barchat";
 
 const page = () => {
   return (
-    <div className="dashbord flex gap-4">
+    <div className="dashbord flex  gap-4">
       <div className="">
         <Navigations />
       </div>
@@ -32,8 +33,12 @@ const page = () => {
               </div>
             </div>
           </div>
+          <div className="">
+        <Barchat/>
+      </div>
         </div>
       </div>
+     
     </div>
   );
 };

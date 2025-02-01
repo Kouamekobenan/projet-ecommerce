@@ -5,7 +5,9 @@ import Link from "next/link";
 import ButtonsReturn from "@/app/components/ButtonsReturn";
 
 const page = ({ params }: { params: { category: string } }) => {
+
   const products = Data.filter((data) => data.category === params.category);
+  const totalCategory = products.reduce((prod)  => prod + (1),0)
 
   if (!products) {
     return (
@@ -19,9 +21,11 @@ const page = ({ params }: { params: { category: string } }) => {
   return (
     <div className="p-7">
       <div className="font-bold text-2xl font-serif">
-        Tous les {params.category} disponibles
+        <span>Il y a: <small className="text-blue-600">{totalCategory}</small></span>
+        <span> <small className="text-blue-600">{params.category}</small>  en stock</span> 
       </div>
-
+      <div className="">  </div>
+        
       <div className="grid grid-col-1 sm:grid-cols-2  md:grid-cols-3 gap-4 border rounded-sm p-2 ">
         {products.map((product) => (
           <Categories

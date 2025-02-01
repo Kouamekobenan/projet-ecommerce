@@ -7,6 +7,7 @@ import im3 from "../image/m1 (3).png";
 import im4 from "../image/m4.png";
 import im5 from "../image/m6.png";
 import { Star } from "lucide-react";
+import Link from "next/link";
 
 const NewProduct = () => {
   const datas = [
@@ -55,10 +56,12 @@ const NewProduct = () => {
             Sammsung Galasy ultra 5G
           </span>
           <span className="">
-            <Buttons label="shop now" />
+            <Link href='../#products'>
+              <Buttons label="shop now"  />
+            </Link> 
           </span>
           <span className="">
-            <Image src={im1} width={600} height={300} alt="" />
+            <Image src={im1} width={600} height={300} alt="mon image" />
           </span>
         </div>
         <div className="flex-1 flex-col  gap-7  mt-3 p-4 border-2 rounded-md">
@@ -71,11 +74,11 @@ const NewProduct = () => {
               <div className="flex flex-col gap-2">
                 <span>{datas.title}</span>
                 <span className="flex">
-                  <Star className="text-orange-400 " />
-                  <Star className="text-orange-400" />
-                  <Star className="text-orange-400" />
-                  <Star className="text-orange-400" />
-                  <Star className="text-orange-400" />
+                  <Star fill="#ff000" color="none"/>
+                  <Star fill="#ff000" color="none" />
+                  <Star fill="#ff000" color="none" />
+                  <Star fill="#ff000" color="none" />
+                  <Star fill="#ff000" color="none" />
                 </span>
                 <span className="font-bold">{datas.price} FCFA</span>
               </div>

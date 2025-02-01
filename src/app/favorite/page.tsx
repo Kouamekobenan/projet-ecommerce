@@ -52,11 +52,11 @@ const page = () => {
                     <span>{pro.name}</span>
                     <span>{pro.price} Fcfa</span>
                     <span className="flex gap-2">
-                      <Star className="text-orange-400" />
-                      <Star className="text-orange-400" />
-                      <Star className="text-orange-400" />
-                      <Star className="text-orange-400" />
-                      <Star className="text-orange-400" />
+                      <Star fill="#FFB347"  color="none" />
+                      <Star  fill="#FFB347"  color="none" />
+                      <Star  fill="#FFB347"  color="none" />
+                      <Star  fill="#FFB347"  color="none" />
+                      <Star  fill="#FFB347"  color="none" />
                     </span>
                     <button
                       onClick={() => removeFavorite(pro.id)}

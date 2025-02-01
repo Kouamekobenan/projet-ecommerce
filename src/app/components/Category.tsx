@@ -18,7 +18,7 @@ const Category = () => {
     { id: 5, imgs: im5, title: "laptop" },
   ];
 
-  const itemsPerPage = 4;
+  const itemsPerPage = 3;
   const [currentPage, setCurrentPage] = useState(0);
 
   const totalPages = Math.ceil(datas.length / itemsPerPage);
@@ -53,17 +53,20 @@ const Category = () => {
           </span>
         </section>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 p-1 gap-4 items-center">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 p-1 gap-4 items-center ">
         {visibleItems.map((d) => (
           <div
-            className="bg-blue-50 p-2 rounded-md hover:shadow-md duration-500 flex gap-2"
+            className=" p-2 rounded-md hover:shadow-md duration-500 flex gap-2 shadow-md"
             key={d.id}
           >
             <section>
-              <Image src={d.imgs} width={150} height={150} alt={d.title} />
+              <Image src={d.imgs} width={150} height={150} alt={d.title} className="bg-blue-200"/>
             </section>
-            <section className="text-center text-xl mt-2 font-medium flex flex-col justify-center font-serif">
-              {d.title}
+            <section className="text-center text-xl mt-2 font-medium flex flex-col gap-1 
+            justify-center font-serif">
+             <span>{d.title}</span> 
+             <span className="italic text-gray-500 text-sm">40 product</span>
+
             </section>
           </div>
         ))}

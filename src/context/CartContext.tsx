@@ -105,8 +105,9 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   const addFavorite = (item: FavoriteItem) => {
     setFavorites((prevFavorites) => {
       if (prevFavorites.find((favItem) => favItem.id === item.id)) {
-        toast.info(`L'article "${item.name}" est déjà dans les favoris.`, {
-          position: "bottom-right",
+        
+      toast.info(`L'article "${item.name}" est déjà dans les favoris.`, {
+          position: "top-right",
           autoClose: 3000,
           hideProgressBar: false,
           closeOnClick: true,
@@ -116,7 +117,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
         });
         return prevFavorites;
       }
-      toast.success(`Article "${item.name}" ajouté aux favoris !`, {
+      toast.success(`Article "${item.name}" ajouté aux favoris avec succès !`, {
         position: "bottom-right",
         autoClose: 3000,
         hideProgressBar: false,
@@ -125,7 +126,8 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
         draggable: true,
         theme: "colored",
       });
-      setFavoriteCount((prevCount) => prevCount + 1);
+      const i = favoriteCount + 1;
+      setFavoriteCount( i );
       return [...prevFavorites, item];
     });
   };
